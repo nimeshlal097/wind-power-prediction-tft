@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Wind Forecast</title>
+</head>
+<body>
+  <h1>TFT Wind Power Forecast</h1>
+  <button id="fetch">Get Prediction</button>
+  <pre id="result"></pre>
+
+  <script>
+    document.getElementById('fetch').onclick = async () => {
+      const res = await fetch('/predict', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+          data: [
+            // supply rows here or gather from a form
+          ]
+        })
+      });
+      const out = await res.json();
+      document.getElementById('result').textContent = JSON.stringify(out, null, 2);
+    };
+  </script>
+</body>
+</html>
